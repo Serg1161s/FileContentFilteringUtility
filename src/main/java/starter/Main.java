@@ -18,7 +18,7 @@ public class Main {
 
     private static void saveDateFromDateBoxe(DateBox dateBox) {
         FileWriterUtility fileWriterUtility = new FileWriterUtility();
-        String folderForSaveDate = "C:\\Users\\Asus\\Documents\\GitHub\\FileContentFilteringUtility";
+        String folderForSaveDate = "C:\\Users\\Asus\\Documents\\GitHub\\FileContentFilteringUtility\\";
         fileWriterUtility.fileWriter(dateBox,folderForSaveDate);
     }
 

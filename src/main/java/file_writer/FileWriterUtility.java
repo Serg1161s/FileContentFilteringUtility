@@ -9,6 +9,7 @@ public  class FileWriterUtility {
     private final static String FILE_NAME_FOR_FLOATS = "floats.txt";
     private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
     private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
+    private static boolean rewriteFile = false;
 
     public void fileWriter(DateBox dateBox, String saveFolder) {
 
@@ -16,9 +17,9 @@ public  class FileWriterUtility {
         writerTo(dateBox.getIntegerList(),saveFolder + FILE_NAME_FOR_INTEGERS);
         writerTo(dateBox.getStringList(),saveFolder  + FILE_NAME_FOR_STRINGS);
     }
-    public void writerTo(List<String> stringList, String wayTo) {
+    public void writerTo(List<String> stringList, String reference) {
         if(stringList.isEmpty())return;
-        try (FileWriter fileWriter = new FileWriter(wayTo)){
+        try (FileWriter fileWriter = new FileWriter(reference,rewriteFile)){
             for(String str:stringList) {
                 fileWriter.write(str + "\n");
             }

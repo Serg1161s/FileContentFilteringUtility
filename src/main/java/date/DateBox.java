@@ -30,6 +30,7 @@ public class DateBox {
     public static void getAllCounts(){
         System.out.println("Total of the elements = " + (countFloat + countString));
 
+
     }
     public void fullStatistics(){
         getStatistics();
@@ -37,8 +38,8 @@ public class DateBox {
     }
 
     private void getStatistics() {
-        System.out.println("Float number max = " + max + "; Float number min = " + min + "; sum of the Float numbers = " + sum + "; average of the Float numbers = " + average);
-        System.out.println("Maximum string size = " + stringSizeMax + "; Minimum string size = " + stringSizeMin);
+        System.out.println("Total of Floats = " + countFloat+ "; Float number max = " + max + "; Float number min = " + min + "; sum of the Float numbers = " + sum + "; average of the Float numbers = " + average);
+        System.out.println("Total of String = "+countString+"; Maximum string size = " + stringSizeMax + "; Minimum string size = " + stringSizeMin);
     }
 
 
