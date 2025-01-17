@@ -6,17 +6,18 @@ import java.io.*;
 import java.util.List;
 
 public  class FileWriterUtility {
-    private static String fileNameForFloats = "floats.txt";
-    private static String fileNameForIntegers = "integers.txt";
-    private static String fileNameForStrings = "strings.txt";
+    private final static String FILE_NAME_FOR_FLOATS = "floats.txt";
+    private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
+    private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
 
     public void fileWriter(DateBox dateBox, String saveFolder) {
 
-        writerTo(dateBox.getFloatsList(),saveFolder + fileNameForFloats);
-        writerTo(dateBox.getIntegerList(),saveFolder + fileNameForIntegers);
-        writerTo(dateBox.getStringList(),saveFolder  + fileNameForStrings);
+        writerTo(dateBox.getFloatsList(),saveFolder + FILE_NAME_FOR_FLOATS);
+        writerTo(dateBox.getIntegerList(),saveFolder + FILE_NAME_FOR_INTEGERS);
+        writerTo(dateBox.getStringList(),saveFolder  + FILE_NAME_FOR_STRINGS);
     }
     public void writerTo(List<String> stringList, String wayTo) {
+        if(stringList.isEmpty())return;
         try (FileWriter fileWriter = new FileWriter(wayTo)){
             for(String str:stringList) {
                 fileWriter.write(str + "\n");
@@ -28,26 +29,16 @@ public  class FileWriterUtility {
     }
 
     public static String getFileNameForFloats() {
-        return fileNameForFloats;
-    }
-
-    public static void setFileNameForFloats(String fileNameForFloats) {
-        FileWriterUtility.fileNameForFloats = fileNameForFloats;
+        return FILE_NAME_FOR_FLOATS;
     }
 
     public static String getFileNameForIntegers() {
-        return fileNameForIntegers;
-    }
-
-    public static void setFileNameForIntegers(String fileNameForIntegers) {
-        FileWriterUtility.fileNameForIntegers = fileNameForIntegers;
+        return FILE_NAME_FOR_INTEGERS;
     }
 
     public static String getFileNameForStrings() {
-        return fileNameForStrings;
+        return FILE_NAME_FOR_STRINGS;
     }
 
-    public static void setFileNameForStrings(String fileNameForStrings) {
-        FileWriterUtility.fileNameForStrings = fileNameForStrings;
-    }
+
 }
