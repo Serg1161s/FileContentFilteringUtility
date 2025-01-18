@@ -6,10 +6,16 @@ import date.FillingDateBox;
 import date.GetFileReferences;
 import file_writer.FileWriterUtility;
 import java.io.IOException;
+import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+        for(String str:args){
+            System.out.println("str = " + str);
+        }
+
         DateBox dateBox = readDate();
         saveDateFromDateBoxe(dateBox);
         DateBox.getAllCounts();
