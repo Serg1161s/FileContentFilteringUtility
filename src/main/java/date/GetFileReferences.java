@@ -1,11 +1,28 @@
 package date;
 
+import java.io.File;
+import java.util.List;
+import java.util.Set;
+
 public class GetFileReferences {
+    private static String folderForIncomingFiles;
+    private static List<File> incomingFileName;
+
     public FileReferences getFilesReferences(){
+
         FileReferences filesReferences = new FileReferences();
-        filesReferences.addReference("C:\\Users\\Asus\\Documents\\GitHub\\FileContentFilteringUtility","DateFileFrom1.txt");
-        filesReferences.addReference("C:\\Users\\Asus\\Documents\\GitHub\\FileContentFilteringUtility","DateFileFrom2.txt");
+        for (File  name : incomingFileName) {
+            filesReferences.addReference(folderForIncomingFiles , name.toString());
+        }
         return filesReferences;
+    }
+
+    public static void setFolderForIncomingFiles(String folderForStat) {
+           folderForIncomingFiles = folderForStat;
+    }
+
+    public static void setIncomingFileName(List<File> incomingFileName) {
+        GetFileReferences.incomingFileName = incomingFileName;
     }
 }
 

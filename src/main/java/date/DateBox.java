@@ -1,5 +1,7 @@
 package date;
 
+import starter.ArgumentsForUtility;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,8 @@ public class DateBox {
     private static Double average = 0.0;
     private static int stringSizeMin = Integer.MAX_VALUE;
     private static int stringSizeMax = Integer.MIN_VALUE;
+    private static boolean fullStatistics;
+    private static boolean shortStatistics;
 
     private static int countFloat;
     private static int countString;
@@ -33,8 +37,8 @@ public class DateBox {
 
     }
     public void fullStatistics(){
-        getStatistics();
-        getAllCounts();
+        if (shortStatistics) getStatistics();
+        if (fullStatistics) getAllCounts();
     }
 
     private void getStatistics() {
@@ -67,6 +71,22 @@ public class DateBox {
         min = Math.min(min, Double.parseDouble(num));
         max = Math.max(max,Double.parseDouble(num));
         average = sum/countFloat;
+    }
+
+    public static boolean isFullStatistics() {
+        return fullStatistics;
+    }
+
+    public static void setFullStatistics(boolean fullStatistics) {
+        DateBox.fullStatistics = fullStatistics;
+    }
+
+    public static boolean isShortStatistics() {
+        return shortStatistics;
+    }
+
+    public static void setShortStatistics(boolean shortStatistics) {
+        DateBox.shortStatistics = shortStatistics;
     }
 
     public List<String> getStringList() {
