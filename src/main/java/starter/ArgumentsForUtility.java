@@ -16,23 +16,25 @@ import java.util.Set;
 
 @Parameters(separators = "=")
 public class ArgumentsForUtility {
- @Parameter(names = {"-o","--folderForResults"}, description = "Путь к папке с результатом")
- private String folderForResults = getRootFolder();
- @Parameter(names = {"-p","--prefixForFileName"}, description = "Префикс к имени файла")
+    @Parameter(names = {"--RootFolder"}, description = "Основная папка (Место расположения файлов для конвертации) :")
+    private String rootFolder = getRootFolder();
+ @Parameter(names = {"-o","--folderForResults"}, description = "Заданный путь к папке с результатом")
+ private String folderForResults = rootFolder;
+ @Parameter(names = {"-p","--prefixForFileName"}, description = "Префикс к имени файлов с результатоми")
  private String prefixForFileName ="";
  @Parameter(names = {"-s","--shortStatistics"}, description = "Короткая статистика")
  private Boolean shortStatistics = false;
- @Parameter(names = {"-a","--reWrite"}, description = "Перезапись Файла")
+ @Parameter(names = {"-a","--reWrite"}, description = "Режим добавление в существующие файлы(По умолчаниию перезаписываются) ")
  private Boolean reWrite = false;
  @Parameter(names = {"-f","--fullStatistics"}, description = "Полная статистика")
  private Boolean fullStatistics = false ;
  @Parameter(names = "-",converter = FileConverter.class, description = "Входящие файлы")
  private List<File> incomingFiles = new ArrayList<>();
- @SubParameter
+ @Parameter(names = {"-h", "--help"}, help = true)
+ private boolean help;
 
-    private String arg1;
+
  public void setParameters() {
-
      GetFileReferences.setFolderForIncomingFiles(getRootFolder());
      GetFileReferences.setIncomingFileName(incomingFiles);
      FileWriterUtility.setRootFolder(folderForResults);
@@ -42,11 +44,11 @@ public class ArgumentsForUtility {
      DateBox.setShortStatistics(shortStatistics);
 
      printSelectedParameters();
-
-
  }
 
     private void printSelectedParameters() {
+        System.out.println("Used parameters : ");
+        System.out.println("rootFolder = " + rootFolder);
         System.out.println("folderForResults = " + folderForResults);
         System.out.println("prefixForFileName = " + prefixForFileName);
         System.out.println("shortStatistics = " + shortStatistics);
@@ -55,10 +57,15 @@ public class ArgumentsForUtility {
         System.out.println("incomingFiles = " + incomingFiles);
     }
 
+    public boolean isHelp() {
+        return help;
+    }
+
     private String getRootFolder() {
         try {
             return new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParent();
-        } catch (Exception e) {
+        } catch (Exception e) {;
+            System.out.println("Root Folder was not find");
             e.printStackTrace();
         }
         return null;
@@ -68,5 +75,18 @@ public class ArgumentsForUtility {
         public File convert(String value) {
             return new File(value);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ArgumentsForUtility{" +
+                "folderForResults='" + folderForResults + '\'' +
+                ", fullStatistics=" + fullStatistics +
+                ", help=" + help +
+                ", incomingFiles=" + incomingFiles +
+                ", prefixForFileName='" + prefixForFileName + '\'' +
+                ", reWrite=" + reWrite +
+                ", shortStatistics=" + shortStatistics +
+                '}';
     }
 }

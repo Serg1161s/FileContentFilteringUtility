@@ -12,8 +12,8 @@ import java.util.List;
 public class FileReaderUtility {
     public List<String> fileReader(FileReferences references) throws IOException {
         List<String> list = new ArrayList<>();
-        for (int i=0 ; i < references.getPath().size(); i++ ){
-            list.addAll(Files.lines(references.getPath().get(i)).toList());
+        for(Path path: references.getPath()){
+            list.addAll(Files.lines(path).toList());
         }
         return list;
     }

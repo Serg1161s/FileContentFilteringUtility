@@ -9,7 +9,6 @@ public class GetFileReferences {
     private static List<File> incomingFileName;
 
     public FileReferences getFilesReferences(){
-
         FileReferences filesReferences = new FileReferences();
         for (File  name : incomingFileName) {
             filesReferences.addReference(folderForIncomingFiles , name.toString());

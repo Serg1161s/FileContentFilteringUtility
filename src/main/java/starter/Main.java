@@ -1,6 +1,7 @@
 package starter;
 
 import com.beust.jcommander.JCommander;
+import com.beust.jcommander.ParameterException;
 import date.DateBox;
 import date.FileReferences;
 import date.FillingDateBox;
@@ -11,22 +12,36 @@ import java.io.IOException;
 
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
-        ArgumentsForUtility arguments = new ArgumentsForUtility();
-        JCommander.newBuilder()
-                .addObject(arguments)
-                .build()
-                .parse(args);
-        arguments.setParameters();
-
-
-
-
+        setSystemOptions(args);
         DateBox dateBox = readDate();
         saveDateFromDateBox(dateBox);
-        DateBox.getAllCounts();
-        dateBox.fullStatistics();
+        DateBox.getFullStatistics();
+        dateBox.getStatistics();
     }
+
+    private static void setSystemOptions(String[] args) {
+        ArgumentsForUtility arguments = new ArgumentsForUtility();
+        JCommander jCommander = new JCommander(arguments);
+               try{
+                   jCommander.parse(args);
+               } catch (ParameterException exception){
+                   System.out.println(exception.getMessage());
+                   showUsage(jCommander);
+               }
+               if(arguments.isHelp()){
+                   showUsage(jCommander);
+               }
+
+        arguments.setParameters();
+    }
+
+    private static void showUsage(JCommander jCommander) {
+        jCommander.usage();
+        System.exit(0);
+    }
+
 
     private static void saveDateFromDateBox(DateBox dateBox) {
         FileWriterUtility fileWriterUtility = new FileWriterUtility();

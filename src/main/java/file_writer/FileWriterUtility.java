@@ -28,7 +28,6 @@ public  class FileWriterUtility {
         } catch(IOException e){
             throw new RuntimeException(e);
         }
-
     }
 
     public static void setRewriteFile(boolean rewriteFile) {
