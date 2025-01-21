@@ -3,7 +3,7 @@ package date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DateBox {
+public class ReferencesBox {
     private List<String> integerList;
     private List<String> floatsList;
     private List<String> stringList;
@@ -19,13 +19,13 @@ public class DateBox {
     private static int countFloat;
     private static int countString;
 
-    public DateBox() {
+    public ReferencesBox() {
         this.floatsList = new ArrayList<>();
         this.integerList = new ArrayList<>();;
         this.stringList = new ArrayList<>();;
     }
 
-    public void DateBoxAddAll(DateBox another){
+    public void DateBoxAddAll(ReferencesBox another){
         this.floatsList.addAll(another.getFloatsList());
         this.integerList.addAll(another.getIntegerList());;
         this.stringList.addAll(another.getStringList());
@@ -83,7 +83,7 @@ public class DateBox {
     }
 
     public static void setFullStatistics(boolean fullStatistics) {
-        DateBox.fullStatistics = fullStatistics;
+        ReferencesBox.fullStatistics = fullStatistics;
     }
 
     public static boolean isShortStatistics() {
@@ -91,7 +91,7 @@ public class DateBox {
     }
 
     public static void setShortStatistics(boolean shortStatistics) {
-        DateBox.shortStatistics = shortStatistics;
+        ReferencesBox.shortStatistics = shortStatistics;
     }
 
     public List<String> getStringList() {

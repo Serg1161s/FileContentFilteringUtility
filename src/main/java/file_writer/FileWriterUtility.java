@@ -1,6 +1,6 @@
 package file_writer;
 
-import date.DateBox;
+import date.ReferencesBox;
 
 import java.io.*;
 import java.util.List;
@@ -13,7 +13,7 @@ public  class FileWriterUtility {
     private static boolean rewriteFile = false;
     private static String rootFolder;
 
-    public void fileWriter(DateBox dateBox) {
+    public void fileWriter(ReferencesBox dateBox) {
 
         writerTo(dateBox.getFloatsList(),rootFolder + "\\" + prefixForOutputFiles + FILE_NAME_FOR_FLOATS);
         writerTo(dateBox.getIntegerList(),rootFolder + "\\" + prefixForOutputFiles + FILE_NAME_FOR_INTEGERS);

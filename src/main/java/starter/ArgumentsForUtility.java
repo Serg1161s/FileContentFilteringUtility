@@ -3,16 +3,13 @@ package starter;
 import com.beust.jcommander.IStringConverter;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import com.beust.jcommander.SubParameter;
-import date.DateBox;
+import date.ReferencesBox;
 import date.GetFileReferences;
 import file_writer.FileWriterUtility;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Parameters(separators = "=")
 public class ArgumentsForUtility {
@@ -40,8 +37,8 @@ public class ArgumentsForUtility {
      FileWriterUtility.setRootFolder(folderForResults);
      FileWriterUtility.setPrefixForOutputFiles(prefixForFileName);
      FileWriterUtility.setRewriteFile(reWrite);
-     DateBox.setFullStatistics(fullStatistics);
-     DateBox.setShortStatistics(shortStatistics);
+     ReferencesBox.setFullStatistics(fullStatistics);
+     ReferencesBox.setShortStatistics(shortStatistics);
 
      printSelectedParameters();
  }

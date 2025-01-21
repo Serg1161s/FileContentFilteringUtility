@@ -2,7 +2,7 @@ package date;
 
 import utility_exceptions.DuplicateReferenceException;
 import utility_exceptions.FileNotFoundEx;
-
+import utility_exceptions.FileWrongTypeOfFileException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,16 +15,37 @@ public class FileReferences {
     }
     public void addReference(String folderRef, String fileName){
         Path incomingReferenceForLoadFile = Paths.get(folderRef, fileName);
-        if(Files.exists(incomingReferenceForLoadFile)) {
+        if (checkReference(incomingReferenceForLoadFile, fileName)){
             if (this.p.contains(incomingReferenceForLoadFile)) {
                 new DuplicateReferenceException(incomingReferenceForLoadFile);
             } else {
                 this.p.add(incomingReferenceForLoadFile);
             }
-        } else {
-            new FileNotFoundEx(incomingReferenceForLoadFile);
         }
     }
+
+    private static boolean checkReference(Path incomingReferenceForLoadFile, String filename) {
+        if (!checkExtension(filename) || !checkFileExist(incomingReferenceForLoadFile)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static boolean checkFileExist(Path incomingReferenceForLoadFile) {
+        if(Files.exists(incomingReferenceForLoadFile)) return true;
+        new FileNotFoundEx(incomingReferenceForLoadFile);
+        return false;
+    }
+
+    private static boolean checkExtension(String filename) {
+        if (filename.endsWith(".txt")) {
+            return true;
+        }
+        new FileWrongTypeOfFileException(filename);
+        return false;
+    }
+
     public Set<Path> getPath() {
         return p;
     }

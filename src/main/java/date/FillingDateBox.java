@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class FillingDateBox {
-    public DateBox fillingDateBox(FileReferences filesReferences) throws IOException {
-        DateBox dateBox = new DateBox();
+    public ReferencesBox fillingDateBox(FileReferences filesReferences) throws IOException {
+        ReferencesBox dateBox = new ReferencesBox();
         List<String> stringList = new FileReaderUtility().fileReader(filesReferences);
         for (String str : stringList) {
             int type = detType(str);
             if (type == 1) dateBox.addDateFloat(str);
             if (type == 2) dateBox.addDateInteger(str);
-            if (type == 3) dateBox.addDateString(str);
+            if (type == 3 && !str.isEmpty()) dateBox.addDateString(str);
         }
         return dateBox;
     }
