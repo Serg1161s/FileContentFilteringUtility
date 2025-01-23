@@ -14,9 +14,9 @@ import java.util.List;
 @Parameters(separators = "=")
 public class ArgumentsForUtility {
     @Parameter(names = {"--RootFolder"}, description = "Основная папка (Место расположения файлов для конвертации) :")
-    private String rootFolder = getRootFolder();
+    public String rootFolder = ROOT_FOLDER;
  @Parameter(names = {"-o","--folderForResults"}, description = "Заданный путь к папке с результатом")
- private String folderForResults = rootFolder;
+ private String folderForResults = ROOT_FOLDER;
  @Parameter(names = {"-p","--prefixForFileName"}, description = "Префикс к имени файлов с результатоми")
  private String prefixForFileName ="";
  @Parameter(names = {"-s","--shortStatistics"}, description = "Короткая статистика")
@@ -29,14 +29,14 @@ public class ArgumentsForUtility {
  private List<File> incomingFiles = new ArrayList<>();
  @Parameter(names = {"-h", "--help"}, help = true)
  private boolean help;
-
+ public static final String ROOT_FOLDER = new ArgumentsForUtility().getRootFolder();
 
  public void setParameters() {
      GetFileReferences.setFolderForIncomingFiles(getRootFolder());
      GetFileReferences.setIncomingFileName(incomingFiles);
      FileWriterUtility.setRootFolder(folderForResults);
      FileWriterUtility.setPrefixForOutputFiles(prefixForFileName);
-     FileWriterUtility.setRewriteFile(reWrite);
+     FileWriterUtility.setContinueToUseOutputFile(reWrite);
      ReferencesBox.setFullStatistics(fullStatistics);
      ReferencesBox.setShortStatistics(shortStatistics);
 
@@ -58,16 +58,17 @@ public class ArgumentsForUtility {
         return help;
     }
 
-    private String getRootFolder() {
+    public String getRootFolder() {
         try {
             return new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParent();
-        } catch (Exception e) {;
+        } catch (Exception e) {
             System.out.println("Root Folder was not find");
             e.printStackTrace();
         }
         return null;
     }
-    public class FileConverter implements IStringConverter<File> {
+
+    private class FileConverter implements IStringConverter<File> {
         @Override
         public File convert(String value) {
             return new File(value);

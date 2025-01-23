@@ -27,6 +27,7 @@ public class Main {
                try{
                    jCommander.parse(args);
                } catch (ParameterException exception){
+                   System.out.println("Введена неправильная опция при запуске. Смотри подсказку ниже.");
                    System.out.println(exception.getMessage());
                    showUsage(jCommander);
                }

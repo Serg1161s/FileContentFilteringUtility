@@ -15,7 +15,6 @@ public class ReferencesBox {
     private static int stringSizeMax = Integer.MIN_VALUE;
     private static boolean fullStatistics;
     private static boolean shortStatistics;
-
     private static int countFloat;
     private static int countString;
 

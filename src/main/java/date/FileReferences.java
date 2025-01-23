@@ -42,7 +42,7 @@ public class FileReferences {
         if (filename.endsWith(".txt")) {
             return true;
         }
-        new FileWrongTypeOfFileException(filename);
+        new FileWrongTypeOfFileException("File = " + filename +  " - was not added because the wrong Type of File");
         return false;
     }
 

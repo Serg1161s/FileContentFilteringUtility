@@ -2,7 +2,6 @@ package date;
 
 import java.io.File;
 import java.util.List;
-import java.util.Set;
 
 public class GetFileReferences {
     private static String folderForIncomingFiles;
