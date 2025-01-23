@@ -2,7 +2,7 @@ package starter;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
-import date.ReferencesBox;
+import date.DateBox;
 import date.FileReferences;
 import date.FillingDateBox;
 import date.GetFileReferences;
@@ -15,9 +15,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         setSystemOptions(args);
-        ReferencesBox dateBox = readDate();
+        DateBox dateBox = readDate();
         saveDateFromDateBox(dateBox);
-        ReferencesBox.getFullStatistics();
+        DateBox.getFullStatistics();
         dateBox.getStatistics();
     }
 
@@ -43,19 +43,14 @@ public class Main {
         System.exit(0);
     }
 
-
-    private static void saveDateFromDateBox(ReferencesBox dateBox) {
+    private static void saveDateFromDateBox(DateBox dateBox) {
         FileWriterUtility fileWriterUtility = new FileWriterUtility();
         fileWriterUtility.fileWriter(dateBox);
     }
 
-
-    private static ReferencesBox readDate() throws IOException {
+    private static DateBox readDate() throws IOException {
         FileReferences filesReferences = new GetFileReferences().getFilesReferences();
-        ReferencesBox dateBox = new FillingDateBox().fillingDateBox(filesReferences);
+        DateBox dateBox = new FillingDateBox().fillingDateBox(filesReferences);
         return dateBox;
     }
-
-
-
 }

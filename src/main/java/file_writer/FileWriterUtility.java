@@ -1,6 +1,7 @@
 package file_writer;
 
-import date.ReferencesBox;
+import date.ReferenceChecker;
+import date.DateBox;
 import starter.ArgumentsForUtility;
 import utility_exceptions.FileWrongTypeOfFileException;
 import utility_exceptions.SetRootFolderForOutputFilesException;
@@ -9,25 +10,26 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Set;
 
 public  class FileWriterUtility {
     private final static String FILE_NAME_FOR_FLOATS = "floats.txt";
     private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
     private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
     private static String prefixForOutputFiles;
-    private static boolean continueToUseOutputFile = false;
-    private static String rootFolder;
+    private static boolean reWrite = false;
+    private static String folderForRes;
 
-    public void fileWriter(ReferencesBox dateBox) {
+    public void fileWriter(DateBox dateBox) {
 
-        writerTo(dateBox.getFloatsList(),rootFolder + "\\" + prefixForOutputFiles + FILE_NAME_FOR_FLOATS);
-        writerTo(dateBox.getIntegerList(),rootFolder + "\\" + prefixForOutputFiles + FILE_NAME_FOR_INTEGERS);
-        writerTo(dateBox.getStringList(),rootFolder  + "\\" + prefixForOutputFiles + FILE_NAME_FOR_STRINGS);
+        writerTo(dateBox.getFloatsList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_FLOATS);
+        writerTo(dateBox.getIntegerList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_INTEGERS);
+        writerTo(dateBox.getStringList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_STRINGS);
     }
-    public void writerTo(List<String> stringList, String reference) {
+    public void writerTo(LinkedList<String> stringList, String reference) {
         if(stringList.isEmpty())return;
-        try (FileWriter fileWriter = new FileWriter(reference, continueToUseOutputFile)){
+        try (FileWriter fileWriter = new FileWriter(reference, reWrite)){
             for(String str:stringList) {
                 fileWriter.write(str + "\n");
             }
@@ -36,54 +38,39 @@ public  class FileWriterUtility {
         }
     }
 
-    public static void setContinueToUseOutputFile(boolean continueToUseOutputFile) {
-        FileWriterUtility.continueToUseOutputFile = continueToUseOutputFile;
+    public static void setReWrite(boolean reWrite) {
+        FileWriterUtility.reWrite = reWrite;
     }
 
     public static void setPrefixForOutputFiles(String prefixForOutputFiles) {
-        if (Files.isRegularFile(Paths.get(ArgumentsForUtility.ROOT_FOLDER,prefixForOutputFiles+FILE_NAME_FOR_FLOATS))) {
-            FileWriterUtility.prefixForOutputFiles = prefixForOutputFiles;
-        } else {
-            new FileWrongTypeOfFileException("The file with Prefix ( " + prefixForOutputFiles + " ) do not possible to create the file created without prefix " );
+        if(prefixForOutputFiles.contains(".")) {
             FileWriterUtility.prefixForOutputFiles = "";
+            new FileWrongTypeOfFileException(" Prefix ( " + prefixForOutputFiles + ") should be without (.).The files saved without prefix");
+        }else if(prefixForOutputFiles != ""){
+            FileWriterUtility.prefixForOutputFiles = (ReferenceChecker.checkFileName(prefixForOutputFiles)) ? prefixForOutputFiles : "";
         }
     }
 
-    public static void setRootFolder(String rootFolder) {
-        if (!rootFolder.endsWith("\\")){
-            rootFolder +="\\";
-        }
-        Path rootFol = Paths.get(rootFolder);
-        if(Files.isDirectory(rootFol)){
-            isFileExist(rootFol);
-            FileWriterUtility.rootFolder= rootFolder;
+    public static void setFolderForResults(String outputFolder) {
+        Path folder = Paths.get(outputFolder);
+        if (Files.isDirectory(folder)) {
+            FileWriterUtility.folderForRes = outputFolder;
         } else {
-            FileWriterUtility.rootFolder= ArgumentsForUtility.ROOT_FOLDER;
-            new SetRootFolderForOutputFilesException(rootFolder + " the way is not Regular. " );
-        }
-    }
-
-    private static void isFileExist(Path rootFol) {
-        if (!Files.exists(rootFol)){
-            try {
-                Files.createDirectories(rootFol);
-            } catch (IOException e) {
-                new SetRootFolderForOutputFilesException(rootFol + " Folder was not created. ");
+            if (isFileExist(folder)) {
+                FileWriterUtility.folderForRes = outputFolder;
+            } else {
+                FileWriterUtility.folderForRes = ArgumentsForUtility.ROOT_FOLDER;
             }
         }
     }
 
-    public static String getFileNameForFloats() {
-        return FILE_NAME_FOR_FLOATS;
+    private static boolean isFileExist(Path outputFolder) {
+        try {
+            Files.createDirectories(outputFolder);
+            return true;
+        } catch (IOException e) {
+            new SetRootFolderForOutputFilesException(outputFolder + " Folder was not created. Results is in : " + ArgumentsForUtility.ROOT_FOLDER);
+        }
+        return false;
     }
-
-    public static String getFileNameForIntegers() {
-        return FILE_NAME_FOR_INTEGERS;
-    }
-
-    public static String getFileNameForStrings() {
-        return FILE_NAME_FOR_STRINGS;
-    }
-
-
 }

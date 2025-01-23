@@ -5,13 +5,11 @@ import date.FileReferences;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.LinkedList;
 
 public class FileReaderUtility {
-    public List<String> fileReader(FileReferences references) throws IOException {
-        List<String> list = new ArrayList<>();
+    public LinkedList<String> fileReader(FileReferences references) throws IOException {
+        LinkedList<String> list = new LinkedList<>();
         for(Path path: references.getPath()){
             list.addAll(Files.lines(path).toList());
         }

@@ -10,7 +10,9 @@ public class GetFileReferences {
     public FileReferences getFilesReferences(){
         FileReferences filesReferences = new FileReferences();
         for (File  name : incomingFileName) {
-            filesReferences.addReference(folderForIncomingFiles , name.toString());
+            if(ReferenceChecker.nameChecker(name.toString())) {
+                filesReferences.addReference(folderForIncomingFiles, name.toString());
+            }
         }
         return filesReferences;
     }

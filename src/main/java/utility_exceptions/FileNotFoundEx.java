@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileNotFoundEx extends FileNotFoundException {
-    private Path notFoundReference;
-
     public FileNotFoundEx(Path notFoundReference) {
         if(Files.isRegularFile(notFoundReference)){
             System.out.println("____________________________________________________");

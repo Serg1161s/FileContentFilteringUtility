@@ -3,7 +3,7 @@ package starter;
 import com.beust.jcommander.IStringConverter;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import date.ReferencesBox;
+import date.DateBox;
 import date.GetFileReferences;
 import file_writer.FileWriterUtility;
 
@@ -34,11 +34,11 @@ public class ArgumentsForUtility {
  public void setParameters() {
      GetFileReferences.setFolderForIncomingFiles(getRootFolder());
      GetFileReferences.setIncomingFileName(incomingFiles);
-     FileWriterUtility.setRootFolder(folderForResults);
+     FileWriterUtility.setFolderForResults(folderForResults);
      FileWriterUtility.setPrefixForOutputFiles(prefixForFileName);
-     FileWriterUtility.setContinueToUseOutputFile(reWrite);
-     ReferencesBox.setFullStatistics(fullStatistics);
-     ReferencesBox.setShortStatistics(shortStatistics);
+     FileWriterUtility.setReWrite(reWrite);
+     DateBox.setFullStatistics(fullStatistics);
+     DateBox.setShortStatistics(shortStatistics);
 
      printSelectedParameters();
  }

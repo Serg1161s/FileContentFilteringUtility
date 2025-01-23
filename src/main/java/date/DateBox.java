@@ -1,12 +1,12 @@
 package date;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.LinkedList;
 
-public class ReferencesBox {
-    private List<String> integerList;
-    private List<String> floatsList;
-    private List<String> stringList;
+public class DateBox {
+    private LinkedList<String> integerList;
+    private LinkedList<String> floatsList;
+    private LinkedList<String> stringList;
     private static Double sum = 0.0;
     private static Double max = Double.MIN_VALUE;
     private static Double min = Double.MAX_VALUE;
@@ -18,13 +18,13 @@ public class ReferencesBox {
     private static int countFloat;
     private static int countString;
 
-    public ReferencesBox() {
-        this.floatsList = new ArrayList<>();
-        this.integerList = new ArrayList<>();;
-        this.stringList = new ArrayList<>();;
+    public DateBox() {
+        this.floatsList = new LinkedList<>();
+        this.integerList = new LinkedList<>();
+        this.stringList = new LinkedList<>();
     }
 
-    public void DateBoxAddAll(ReferencesBox another){
+    public void DateBoxAddAll(DateBox another){
         this.floatsList.addAll(another.getFloatsList());
         this.integerList.addAll(another.getIntegerList());;
         this.stringList.addAll(another.getStringList());
@@ -39,9 +39,9 @@ public class ReferencesBox {
         System.out.println("____________________________________________________");
         System.out.println("Full statistics \n"
                 +"Numbers statistic : \n"
-                +"Total of inputted Numbers = " + countFloat+ ";\n Number max = " + max + ";  \n Number min = " + min + "; \n sum of the numbers = " + sum + "; \n average of the numbers = " + average);
+                +"Total of inputted Numbers = " + countFloat+ ";\n Number max = " + ((max == Double.MIN_VALUE) ? 0:max)  + ";  \n Number min = " + ((min== Double.MAX_VALUE) ? 0 : min )+ "; \n sum of the numbers = " + sum + "; \n average of the numbers = " + average);
         System.out.println("String statistic : \n"
-                +"Total of inputted String = "+countString+";\n Maximum string size = " + stringSizeMax + ";\n Minimum string size = " + stringSizeMin);
+                +"Total of inputted String = "+countString+";\n Maximum string size = " + ((stringSizeMax == Integer.MIN_VALUE)? 0 : stringSizeMax )+ ";\n Minimum string size = " + ((stringSizeMin == Integer.MAX_VALUE)?0:stringSizeMin));
         System.out.println("____________________________________________________");
     }
 
@@ -77,40 +77,24 @@ public class ReferencesBox {
         average = sum/countFloat;
     }
 
-    public static boolean isFullStatistics() {
-        return fullStatistics;
-    }
 
     public static void setFullStatistics(boolean fullStatistics) {
-        ReferencesBox.fullStatistics = fullStatistics;
-    }
-
-    public static boolean isShortStatistics() {
-        return shortStatistics;
+        DateBox.fullStatistics = fullStatistics;
     }
 
     public static void setShortStatistics(boolean shortStatistics) {
-        ReferencesBox.shortStatistics = shortStatistics;
+        DateBox.shortStatistics = shortStatistics;
     }
 
-    public List<String> getStringList() {
-        return stringList;
-    }
-
-    public List<String> getIntegerList() {
-        return integerList;
-    }
-
-    public List<String> getFloatsList() {
+    public LinkedList<String> getFloatsList() {
         return floatsList;
     }
 
-    public static int getCountFloat() {
-        return countFloat;
+    public LinkedList<String> getIntegerList() {
+        return integerList;
     }
 
-
-    public static int getCountString() {
-        return countString;
+    public LinkedList<String> getStringList() {
+        return stringList;
     }
 }
