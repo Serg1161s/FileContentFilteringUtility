@@ -25,6 +25,7 @@ public class ArgumentsForUtility {
  private Boolean reWrite = false;
  @Parameter(names = {"-f","--fullStatistics"}, description = "Полная статистика")
  private Boolean fullStatistics = false ;
+ @Parameter(names = "-",converter = FileConverter.class, description = "Входящие файлы. После тире перечислить имена файлов для сортировки через запятую ")
  private List<File> incomingFiles = new ArrayList<>();
  @Parameter(names = {"-h", "--help"}, help = true)
  private boolean help;
