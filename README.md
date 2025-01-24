@@ -41,11 +41,11 @@ Java version: 23.0.1, vendor: Oracle Corporation, runtime: C:\Program Files\Java
 Default locale: ru_RU, platform encoding: UTF-8
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 
-Зависимости
+Зависимости:
 JComander
- <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
- JarPlagin
- <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+ https://mvnrepository.com/artifact/com.beust/jcommander
+JarPlagin
+ https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin 
 Maven dependency
-<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+ https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin 
 
