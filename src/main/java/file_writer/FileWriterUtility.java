@@ -17,29 +17,25 @@ public  class FileWriterUtility {
     private final static String FILE_NAME_FOR_FLOATS = "floats.txt";
     private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
     private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
-    private static String prefixForOutputFiles = "";
-    private static boolean reWrite = false;
-    private static String folderForRes;
+//    private static String prefixForOutputFiles = "";
+//    private static boolean reWrite = false;
+//    private static String folderForRes;
 
-    public void fileWriter(DateBox dateBox) {
+    public void fileWriter(DateBox dateBox, ArgumentsForUtility arguments) {
 
         writerTo(dateBox.getFloatsList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_FLOATS);
         writerTo(dateBox.getIntegerList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_INTEGERS);
         writerTo(dateBox.getStringList(), folderForRes + "\\" + prefixForOutputFiles + FILE_NAME_FOR_STRINGS);
     }
-    public void writerTo(LinkedList<String> stringList, String reference) {
+    public void writerTo(LinkedList<String> stringList, String reference, ArgumentsForUtility arguments) {
         if(stringList.isEmpty())return;
-        try (FileWriter fileWriter = new FileWriter(reference, reWrite)){
+        try (FileWriter fileWriter = new FileWriter(reference, arguments.getReWrite())){
             for(String str:stringList) {
                 fileWriter.write(str + "\n");
             }
         } catch(IOException e){
             throw new RuntimeException(e);
         }
-    }
-
-    public static void setReWrite(boolean reWrite) {
-        FileWriterUtility.reWrite = reWrite;
     }
 
     public static void setPrefixForOutputFiles(String prefixForOutputFiles) {

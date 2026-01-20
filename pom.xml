@@ -9,12 +9,12 @@
     <version>1.0</version>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jcommander.version>1.82</jcommander.version>
-        <maven-jar-plugin.versiom>3.4.2</maven-jar-plugin.versiom>
-        <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
+        <maven-jar-plugin.versiom>3.5.0</maven-jar-plugin.versiom>
+        <maven-dependency-plugin.version>3.9.0</maven-dependency-plugin.version>
     </properties>
 
     <dependencies>

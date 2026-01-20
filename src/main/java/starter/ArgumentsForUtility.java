@@ -13,35 +13,36 @@ import java.util.List;
 
 @Parameters(separators = "=")
 public class ArgumentsForUtility {
+    private final String ROOT_FOLDER = new ArgumentsForUtility().getRootFolder();
     @Parameter(names = {"--RootFolder"}, description = "Основная папка (Место расположения файлов для конвертации) :")
-    public String rootFolder = ROOT_FOLDER;
- @Parameter(names = {"-o","--folderForResults"}, description = "Заданный путь к папке с результатом")
- private String folderForResults = ROOT_FOLDER;
- @Parameter(names = {"-p","--prefixForFileName"}, description = "Префикс к имени файлов с результатоми")
- private String prefixForFileName ="";
- @Parameter(names = {"-s","--shortStatistics"}, description = "Короткая статистика")
- private Boolean shortStatistics = false;
- @Parameter(names = {"-a","--reWrite"}, description = "Режим добавление в существующие файлы(По умолчаниию перезаписываются) ")
- private Boolean reWrite = false;
- @Parameter(names = {"-f","--fullStatistics"}, description = "Полная статистика")
- private Boolean fullStatistics = false ;
- @Parameter(names = "-",converter = FileConverter.class, description = "Входящие файлы. После тире перечислить имена файлов для сортировки через запятую ")
- private List<File> incomingFiles = new ArrayList<>();
- @Parameter(names = {"-h", "--help"}, help = true)
- private boolean help;
+    private final String rootFolder = ROOT_FOLDER;
+    @Parameter(names = {"-o", "--folderForResults"}, description = "Заданный путь к папке с результатом")
+    private final String folderForResults = ROOT_FOLDER;
+    @Parameter(names = {"-p", "--prefixForFileName"}, description = "Префикс к имени файлов с результатоми")
+    private final String prefixForFileName = "";
+    @Parameter(names = {"-s", "--shortStatistics"}, description = "Короткая статистика")
+    private final Boolean shortStatistics = false;
+    @Parameter(names = {"-a", "--reWrite"}, description = "Режим добавление в существующие файлы(По умолчаниию перезаписываются) ")
+    private final Boolean reWrite = false;
+    @Parameter(names = {"-f", "--fullStatistics"}, description = "Полная статистика")
+    private final Boolean fullStatistics = true;
+    @Parameter(names = "-", converter = FileConverter.class, description = "Входящие файлы. После тире перечислить имена файлов для сортировки через запятую ")
+    private final  List<File> incomingFiles = new ArrayList<>();
+    @Parameter(names = {"-h", "--help"}, help = true)
+    private boolean help;
 
- public static final String ROOT_FOLDER = new ArgumentsForUtility().getRootFolder();
 
  public void setParameters() {
-     GetFileReferences.setFolderForIncomingFiles(getRootFolder());
-     GetFileReferences.setIncomingFileName(incomingFiles);
-     FileWriterUtility.setFolderForResults(folderForResults);
-     FileWriterUtility.setPrefixForOutputFiles(prefixForFileName);
-     FileWriterUtility.setReWrite(reWrite);
-     DateBox.setFullStatistics(fullStatistics);
-     DateBox.setShortStatistics(shortStatistics);
+//     GetFileReferences.setFolderForIncomingFiles(getRootFolder());
+//     GetFileReferences.setIncomingFileName(incomingFiles);
+//     FileWriterUtility.setFolderForResults(folderForResults);
+//     FileWriterUtility.setPrefixForOutputFiles(prefixForFileName);
+//     FileWriterUtility.setReWrite(reWrite);
+//     DateBox.setFullStatistics(fullStatistics);
+//     DateBox.setShortStatistics(shortStatistics);
 
      printSelectedParameters();
+
  }
 
     private void printSelectedParameters() {
@@ -87,5 +88,37 @@ public class ArgumentsForUtility {
                 ", reWrite=" + reWrite +
                 ", shortStatistics=" + shortStatistics +
                 '}';
+    }
+
+    public String getROOT_FOLDER() {
+        return ROOT_FOLDER;
+    }
+
+    public String getFolderForResults() {
+        return folderForResults;
+    }
+
+    public String getPrefixForFileName() {
+        return prefixForFileName;
+    }
+
+    public Boolean getShortStatistics() {
+        return shortStatistics;
+    }
+
+    public Boolean getReWrite() {
+        return reWrite;
+    }
+
+    public Boolean getFullStatistics() {
+        return fullStatistics;
+    }
+
+    public List<File> getIncomingFiles() {
+        return incomingFiles;
+    }
+
+    public void setHelp(boolean help) {
+        this.help = help;
     }
 }
