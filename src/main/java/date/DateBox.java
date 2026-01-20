@@ -7,21 +7,22 @@ public class DateBox {
     private LinkedList<String> integerList;
     private LinkedList<String> floatsList;
     private LinkedList<String> stringList;
-    private static Double sum = 0.0;
-    private static Double max = Double.MIN_VALUE;
-    private static Double min = Double.MAX_VALUE;
-    private static Double average = 0.0;
-    private static int stringSizeMin = Integer.MAX_VALUE;
-    private static int stringSizeMax = Integer.MIN_VALUE;
-    private static boolean fullStatistics;
-    private static boolean shortStatistics;
-    private static int countFloat;
-    private static int countString;
+    private Double sum = 0.0;
+    private Double max = Double.MIN_VALUE;
+    private Double min = Double.MAX_VALUE;
+    private Double average = 0.0;
+    private int stringSizeMin = Integer.MAX_VALUE;
+    private int stringSizeMax = Integer.MIN_VALUE;
+    private boolean fullStatistics = false;
+    private boolean shortStatistics = true;
+    private int countFloat = 0;
+    private int countString = 0;
 
     public DateBox() {
         this.floatsList = new LinkedList<>();
         this.integerList = new LinkedList<>();
         this.stringList = new LinkedList<>();
+        this.sum = getSum();
     }
 
     public void DateBoxAddAll(DateBox another){
@@ -35,7 +36,7 @@ public class DateBox {
         if (fullStatistics) getFullStatistics();
     }
 
-    public static void getFullStatistics(){
+    public void getFullStatistics(){
         System.out.println("____________________________________________________");
         System.out.println("Full statistics \n"
                 +"Numbers statistic : \n"
@@ -78,12 +79,12 @@ public class DateBox {
     }
 
 
-    public static void setFullStatistics(boolean fullStatistics) {
-        DateBox.fullStatistics = fullStatistics;
+    public void setFullStatistics(boolean fullStatistics) {
+        this.fullStatistics = fullStatistics;
     }
 
-    public static void setShortStatistics(boolean shortStatistics) {
-        DateBox.shortStatistics = shortStatistics;
+    public  void setShortStatistics(boolean shortStatistics) {
+        this.shortStatistics = shortStatistics;
     }
 
     public LinkedList<String> getFloatsList() {
@@ -96,5 +97,77 @@ public class DateBox {
 
     public LinkedList<String> getStringList() {
         return stringList;
+    }
+
+    public Double getSum() {
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
+    }
+
+    public Double getMax() {
+        return max;
+    }
+
+    public void setMax(Double max) {
+        this.max = max;
+    }
+
+    public Double getMin() {
+        return min;
+    }
+
+    public void setMin(Double min) {
+        this.min = min;
+    }
+
+    public Double getAverage() {
+        return average;
+    }
+
+    public void setAverage(Double average) {
+        this.average = average;
+    }
+
+    public int getStringSizeMin() {
+        return stringSizeMin;
+    }
+
+    public void setStringSizeMin(int stringSizeMin) {
+        this.stringSizeMin = stringSizeMin;
+    }
+
+    public int getStringSizeMax() {
+        return stringSizeMax;
+    }
+
+    public void setStringSizeMax(int stringSizeMax) {
+        this.stringSizeMax = stringSizeMax;
+    }
+
+    public int getCountFloat() {
+        return countFloat;
+    }
+
+    public void setCountFloat(int countFloat) {
+        this.countFloat = countFloat;
+    }
+
+    public int getCountString() {
+        return countString;
+    }
+
+    public void setCountString(int countString) {
+        this.countString = countString;
+    }
+
+    public boolean isShortStatistics() {
+        return shortStatistics;
+    }
+
+    public boolean isFullStatistics() {
+        return fullStatistics;
     }
 }

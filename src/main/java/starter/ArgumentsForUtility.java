@@ -29,6 +29,7 @@ public class ArgumentsForUtility {
  private List<File> incomingFiles = new ArrayList<>();
  @Parameter(names = {"-h", "--help"}, help = true)
  private boolean help;
+
  public static final String ROOT_FOLDER = new ArgumentsForUtility().getRootFolder();
 
  public void setParameters() {

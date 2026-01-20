@@ -17,7 +17,7 @@ public  class FileWriterUtility {
     private final static String FILE_NAME_FOR_FLOATS = "floats.txt";
     private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
     private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
-    private static String prefixForOutputFiles;
+    private static String prefixForOutputFiles = "";
     private static boolean reWrite = false;
     private static String folderForRes;
 

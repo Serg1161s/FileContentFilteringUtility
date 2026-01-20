@@ -6,21 +6,21 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class FileReferences {
-    private Set<Path> p;
+    private Set<Path> paths;
     public FileReferences(){
-        this.p = new HashSet<>();
+        this.paths = new HashSet<>();
     }
     public void addReference(String folderRef, String fileName){
         Path incomingReferenceForLoadFile = Paths.get(folderRef, fileName);
         if (ReferenceChecker.checkFileExist(incomingReferenceForLoadFile)  ) {
-            if (this.p.contains(incomingReferenceForLoadFile)) {
+            if (this.paths.contains(incomingReferenceForLoadFile)) {
                 new DuplicateReferenceException(incomingReferenceForLoadFile);
             } else {
-                this.p.add(incomingReferenceForLoadFile);
+                this.paths.add(incomingReferenceForLoadFile);
             }
         }
     }
-    public Set<Path> getPath() {
-        return p;
+    public Set<Path> getPaths() {
+        return paths;
     }
 }

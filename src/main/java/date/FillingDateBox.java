@@ -5,22 +5,26 @@ import java.io.IOException;
 import java.util.List;
 
 public class FillingDateBox {
+    private static final int FLOAT_TYPE = 1;
+    private static final int INTEGER_TYPE = 2;
+    private static final int STRING_TYPE = 3;
+
     public DateBox fillingDateBox(FileReferences filesReferences) throws IOException {
         DateBox dateBox = new DateBox();
         List<String> stringList = new FileReaderUtility().fileReader(filesReferences);
         for (String str : stringList) {
             int type = detType(str);
-            if (type == 1) dateBox.addDateFloat(str);
-            if (type == 2) dateBox.addDateInteger(str);
-            if (type == 3 && !str.isEmpty()) dateBox.addDateString(str);
+            if (type == FLOAT_TYPE) dateBox.addDateFloat(str);
+            if (type == INTEGER_TYPE) dateBox.addDateInteger(str);
+            if (type == STRING_TYPE && !str.isEmpty()) dateBox.addDateString(str);
         }
         return dateBox;
     }
 
     private int detType(String str) {
-        if (isInteger(str)) return 2;
-        if (isFloat(str)) return 1;
-        return 3;
+        if (isInteger(str)) return INTEGER_TYPE;
+        if (isFloat(str)) return FLOAT_TYPE;
+        return STRING_TYPE;
     }
 
     private boolean isFloat(String str) {

@@ -25,7 +25,7 @@
 
 Пример команды:
    
-java -jar FileContentFilteringUtility-1.0.jar -p some_ -s -f  -in1.txt,in2.txt,in2.XLS,in2.txt,in2.tx,in3.txt -o C:\Temp\temp
+java -jar FileContentFilteringUtility-1.0.jar -p some_ -s -f  - in1.txt,in2.txt,in2.XLS,in2.txt,in2.tx,in3.txt -o C:\Temp\temp
 
 Система сборки:
 
