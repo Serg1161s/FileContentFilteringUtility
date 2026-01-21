@@ -1,6 +1,5 @@
 package utility_exceptions;
 
-import java.util.SortedMap;
 
 public class FileWrongTypeOfFileException extends RuntimeException {
 

@@ -15,7 +15,7 @@ public class FileNotFoundEx extends FileNotFoundException {
        else {
             System.out.println("____________________________________________________");
             System.out.println("FileNotFoundEx - not found Reference");
-           System.out.println(DuplicateReferenceException.ANSI_RED + "Reference = " + notFoundReference + " - this File was not added because not found" + DuplicateReferenceException.ANSI_RESET);
+           System.out.println(DuplicateReferenceException.ANSI_RED + "Reference = " + notFoundReference + " - this File was not added, because it not exist" + DuplicateReferenceException.ANSI_RESET);
            System.out.println("____________________________________________________");
        }
     }
