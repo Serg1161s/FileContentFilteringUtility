@@ -1,9 +1,10 @@
 package date;
 
-import java.util.HashSet;
+import starter.ArgumentsForUtility;
+
 import java.util.LinkedList;
 
-public class DateBox {
+public class BoxForIncomingDateFromFiles {
     private LinkedList<String> integerList;
     private LinkedList<String> floatsList;
     private LinkedList<String> stringList;
@@ -16,24 +17,15 @@ public class DateBox {
     private int countFloat = 0;
     private int countString = 0;
 
-    private static boolean fullStatistics = false;
-    private static boolean shortStatistics = true;
-
-    public DateBox() {
+    public BoxForIncomingDateFromFiles() {
         this.floatsList = new LinkedList<>();
         this.integerList = new LinkedList<>();
         this.stringList = new LinkedList<>();
     }
 
-    public void DateBoxAddAll(DateBox another) {
-        this.floatsList.addAll(another.getFloatsList());
-        this.integerList.addAll(another.getIntegerList());
-        this.stringList.addAll(another.getStringList());
-    }
-
-    public void getStatistics() {
-        if (shortStatistics) getShortStatistics();
-        if (fullStatistics) getFullStatistics();
+    public void getStatistics(ArgumentsForUtility arguments) {
+        if (arguments.getShortStatistics()) getShortStatistics();
+        if (arguments.getFullStatistics()) getFullStatistics();
     }
 
     public void getFullStatistics() {
@@ -78,15 +70,6 @@ public class DateBox {
         average = sum / countFloat;
     }
 
-
-    public static void setFullStatistics(boolean fullStat) {
-        fullStatistics = fullStat;
-    }
-
-    public static void setShortStatistics(boolean shortStat) {
-        shortStatistics = shortStat;
-    }
-
     public LinkedList<String> getFloatsList() {
         return floatsList;
     }
@@ -98,6 +81,7 @@ public class DateBox {
     public LinkedList<String> getStringList() {
         return stringList;
     }
+
 }
 
 

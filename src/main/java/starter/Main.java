@@ -2,9 +2,9 @@ package starter;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
-import date.DateBox;
+import date.BoxForIncomingDateFromFiles;
 import date.GetIncomingFilesReferences;
-import date.FillingDateBox;
+import date.FillingBoxForIncomingDate;
 import date.GetFileReferences;
 import file_writer.FileWriterUtility;
 import java.io.IOException;
@@ -13,13 +13,13 @@ import java.io.IOException;
 public class Main {
     static void main(String[] args) throws IOException {
         ArgumentsForUtility arguments = setSystemOptions(args);
-        runApp(arguments);
+        runFileContentFilteringUtility(arguments);
     }
 
-    private static void runApp(ArgumentsForUtility arguments) throws IOException {
-        DateBox dateBox = readDate(arguments);
-        saveDateFromDateBox(dateBox,arguments);
-        dateBox.getStatistics();
+    private static void runFileContentFilteringUtility(ArgumentsForUtility arguments) throws IOException {
+        BoxForIncomingDateFromFiles dateBox = readDateFromIncomingFiles(arguments);
+        saveDateInToFileFromDateBox(dateBox,arguments);
+        dateBox.getStatistics(arguments);
     }
 
     private static ArgumentsForUtility setSystemOptions(String[] args) {
@@ -45,12 +45,12 @@ public class Main {
         System.exit(0);
     }
 
-    private static DateBox readDate(ArgumentsForUtility arguments) throws IOException {
+    private static BoxForIncomingDateFromFiles readDateFromIncomingFiles(ArgumentsForUtility arguments) throws IOException {
         GetIncomingFilesReferences filesReferences = new GetFileReferences().getFilesReferences(arguments);
-        return new FillingDateBox().fillingDateBox(filesReferences);
+        return new FillingBoxForIncomingDate().fillingDateBox(filesReferences);
     }
 
-    private static void saveDateFromDateBox(DateBox dateBox, ArgumentsForUtility arguments) {
+    private static void saveDateInToFileFromDateBox(BoxForIncomingDateFromFiles dateBox, ArgumentsForUtility arguments) {
         FileWriterUtility fileWriterUtility = new FileWriterUtility();
         fileWriterUtility.fileWriter(dateBox,arguments);
     }

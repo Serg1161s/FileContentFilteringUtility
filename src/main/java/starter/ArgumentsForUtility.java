@@ -33,10 +33,10 @@ public class ArgumentsForUtility {
         System.out.println("Used parameters : ");
         System.out.println("--rootFolder = " + rootFolder);
         System.out.println("--folderForResults = " + folderForResults);
-        System.out.println("--refixForFileName = " + ((prefixForFileName.isEmpty())? "без префикса": prefixForFileName) );
+        System.out.println("--prefixForFileName = " + ((prefixForFileName.isEmpty())? "без префикса": prefixForFileName) );
         System.out.println("--hortStatistics = " + shortStatistics);
-        System.out.println("--ullStatistics = " + fullStatistics);
-        System.out.println("--eWrite = " + reWrite);
+        System.out.println("--FullStatistics = " + fullStatistics);
+        System.out.println("--reWrite = " + reWrite);
         System.out.println("--incomingFiles = " + incomingFiles);
     }
     public boolean isHelp() {

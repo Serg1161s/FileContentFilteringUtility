@@ -5,13 +5,13 @@ import file_writer.FileReaderUtility;
 import java.io.IOException;
 import java.util.List;
 
-public class FillingDateBox {
+public class FillingBoxForIncomingDate {
     private static final int FLOAT_TYPE = 1;
     private static final int INTEGER_TYPE = 2;
     private static final int STR_TYPE = 3;
 
-    public DateBox fillingDateBox(GetIncomingFilesReferences filesReferences) throws IOException {
-        DateBox dateBox = new DateBox();
+    public BoxForIncomingDateFromFiles fillingDateBox(GetIncomingFilesReferences filesReferences) throws IOException {
+        BoxForIncomingDateFromFiles dateBox = new BoxForIncomingDateFromFiles();
         List<String> stringList = new FileReaderUtility().fileReader(filesReferences);
         for (String str : stringList) {
             int type = detType(str);

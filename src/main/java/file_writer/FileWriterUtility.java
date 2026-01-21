@@ -1,11 +1,13 @@
 package file_writer;
 
 import date.ReferenceChecker;
-import date.DateBox;
+import date.BoxForIncomingDateFromFiles;
 import starter.ArgumentsForUtility;
 import utility_exceptions.FileWrongTypeOfFileException;
+import utility_exceptions.SetRootFolderForOutputFilesException;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 
@@ -14,14 +16,15 @@ public  class FileWriterUtility {
     private final static String FILE_NAME_FOR_INTEGERS = "integers.txt";
     private final static String FILE_NAME_FOR_STRINGS = "strings.txt";
 
-    public void fileWriter(DateBox dateBox, ArgumentsForUtility arguments) {
-        String prefFile = checkPrefixForOutputFiles(arguments.getPrefixForFileName());
-        Path path = Path.of(arguments.getFolderForResults(), prefFile);
-        writerTo(dateBox.getFloatsList(), Path.of(path.toString(), FILE_NAME_FOR_FLOATS), arguments);
-        writerTo(dateBox.getIntegerList(),Path.of(path.toString(), FILE_NAME_FOR_INTEGERS), arguments);
-        writerTo(dateBox.getStringList(), Path.of(path.toString(), FILE_NAME_FOR_STRINGS), arguments);
+    public void fileWriter(BoxForIncomingDateFromFiles dateBox, ArgumentsForUtility arguments) {
+        String prefixForOutputFiles = checkPrefixForOutputFiles(arguments.getPrefixForFileName());
+        String folderForRes = setFolderForResults(arguments);
+
+        writerTo(dateBox.getFloatsList(), Path.of(folderForRes,prefixForOutputFiles + FILE_NAME_FOR_FLOATS), arguments);
+        writerTo(dateBox.getIntegerList(),Path.of(folderForRes,prefixForOutputFiles + FILE_NAME_FOR_INTEGERS), arguments);
+        writerTo(dateBox.getStringList(), Path.of(folderForRes,prefixForOutputFiles + FILE_NAME_FOR_STRINGS), arguments);
     }
-    public void writerTo(LinkedList<String> stringList, Path reference, ArgumentsForUtility arguments) {
+    private void writerTo(LinkedList<String> stringList, Path reference, ArgumentsForUtility arguments) {
         if(stringList.isEmpty())return;
         try (FileWriter fileWriter = new FileWriter(reference.toString(), arguments.getReWrite())){
             for(String str:stringList) {
@@ -35,33 +38,30 @@ public  class FileWriterUtility {
     private String checkPrefixForOutputFiles(String prefixForOutputFiles) {
         if (prefixForOutputFiles.isEmpty()) {return "";}
         if (prefixForOutputFiles.contains(".")) {
-            return  "";
             new FileWrongTypeOfFileException(" Prefix ( " + prefixForOutputFiles + ") should be without (.).The files saved without prefix");
+            return  "";
         } else  {
             return  (ReferenceChecker.checkFileName(prefixForOutputFiles)) ? prefixForOutputFiles : "";
         }
     }
 
-//    public static void setFolderForResults(String outputFolder) {
-//        Path folder = Paths.get(outputFolder);
-//        if (Files.isDirectory(folder)) {
-//            FileWriterUtility.folderForRes = outputFolder;
-//        } else {
-//            if (isFileExist(folder)) {
-//                FileWriterUtility.folderForRes = outputFolder;
-//            } else {
-//                FileWriterUtility.folderForRes = ArgumentsForUtility.ROOT_FOLDER;
-//            }
-//        }
-//    }
+    private String setFolderForResults(ArgumentsForUtility arguments) {
+        Path folder = Path.of(arguments.getFolderForResults());
+        if (Files.isDirectory(folder) || isFileExist(folder, arguments)) {
+           return arguments.getFolderForResults();
+        } else {
+            return arguments.getRootFolder();
+        }
 
-//    private static boolean isFileExist(Path outputFolder) {
-//        try {
-//            Files.createDirectories(outputFolder);
-//            return true;
-//        } catch (IOException e) {
-//            new SetRootFolderForOutputFilesException(outputFolder + " Folder was not created. Results is in : " + ArgumentsForUtility.ROOT_FOLDER);
-//        }
-//        return false;
-//    }
+    }
+
+    private static boolean isFileExist(Path outputFolder, ArgumentsForUtility arguments ) {
+        try {
+            Files.createDirectories(outputFolder);
+            return true;
+        } catch (IOException e) {
+            new SetRootFolderForOutputFilesException (outputFolder + " Folder was not created. Results is in : " + arguments.getRootFolder(), arguments);
+        }
+        return false;
+    }
 }
