@@ -31,17 +31,22 @@ public class BoxForIncomingDateFromFiles {
     public void getFullStatistics() {
         System.out.println("____________________________________________________");
         System.out.println("Full statistics \n"
-                + "Numbers statistic : \n"
-                + "Total of inputted Numbers = " + countFloat + ";\n Number max = " + ((max == Double.MIN_VALUE) ? 0 : max) + ";  \n Number min = " + ((min == Double.MAX_VALUE) ? 0 : min) + "; \n sum of the numbers = " + sum + "; \n average of the numbers = " + average);
+                + "Total of inputted Numbers = " + countFloat + "; \n "
+                + "Number max = " + ((max == Double.MIN_VALUE) ? 0 : max) + "; \n "
+                + "Number min = " + ((min == Double.MAX_VALUE) ? 0 : min) + "; \n"
+                + " sum of the numbers = " + sum + "; \n "
+                + "average of the numbers = " + average);
         System.out.println("String statistic : \n"
-                + "Total of inputted String = " + countString + ";\n Maximum string size = " + ((stringSizeMax == Integer.MIN_VALUE) ? 0 : stringSizeMax) + ";\n Minimum string size = " + ((stringSizeMin == Integer.MAX_VALUE) ? 0 : stringSizeMin));
+                + "Total of inputted String = " + countString + "; \n "
+                + "Maximum string size = " + ((stringSizeMax == Integer.MIN_VALUE) ? 0 : stringSizeMax) + "; \n"
+                + "Minimum string size = " + ((stringSizeMin == Integer.MAX_VALUE) ? 0 : stringSizeMin) + ";");
         System.out.println("____________________________________________________");
     }
 
     private void getShortStatistics() {
         System.out.println("____________________________________________________");
-        System.out.println("Short statistics \n");
-        System.out.println("Total of the elements = " + (countFloat + countString));
+        System.out.println("Short statistics: + \n"
+                         + "Total of the elements = " + (countFloat + countString));
         System.out.println("____________________________________________________");
     }
 

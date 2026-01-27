@@ -9,7 +9,7 @@ import java.nio.file.Path;
 public class ReferenceChecker {
     private static final String REGEX_PATTERN = "^[A-Za-z0-9_.]{1,244}$";
 
-    public static boolean nameChecker(String fileName) {
+    public boolean nameChecker(String fileName) {
         if (!checkFileName(fileName)) {
             new FileWrongTypeOfFileException("The file name is incorrect - ' " + fileName + " '  this file was not add " );
             return false;
@@ -21,21 +21,21 @@ public class ReferenceChecker {
         return true;
     }
 
-    private static boolean checkFileType(String fileName) {
+    private boolean checkFileType(String fileName) {
         if (fileName.length() < 5) {
             return false;
         }
         return fileName.endsWith(".txt");
     }
 
-    public static boolean checkFileName(String fileName) {
+    public boolean checkFileName(String fileName) {
         if (fileName == null) {
             return false;
         }
         return fileName.matches(REGEX_PATTERN);
     }
 
-    public static boolean checkFileExist(Path incomingReferenceForLoadFile) {
+    public boolean checkFileExist(Path incomingReferenceForLoadFile) {
         if(Files.exists(incomingReferenceForLoadFile)) return true;
         new FileNotFoundEx(incomingReferenceForLoadFile);
         return false;

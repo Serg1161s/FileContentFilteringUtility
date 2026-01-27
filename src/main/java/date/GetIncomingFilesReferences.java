@@ -13,7 +13,7 @@ public class GetIncomingFilesReferences {
     }
     public void addReference(String folderRef, String fileName){
         Path incomingReferenceForLoadFile = Paths.get(folderRef, fileName);
-        if (ReferenceChecker.checkFileExist(incomingReferenceForLoadFile)  ) {
+        if (new ReferenceChecker().checkFileExist(incomingReferenceForLoadFile)  ) {
             if (this.pathToIncomingFiles.contains(incomingReferenceForLoadFile)) {
                 new DuplicateReferenceException(incomingReferenceForLoadFile);
             } else {

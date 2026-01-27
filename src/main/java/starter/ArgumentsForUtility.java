@@ -34,7 +34,7 @@ public class ArgumentsForUtility {
         System.out.println("--rootFolder = " + rootFolder);
         System.out.println("--folderForResults = " + folderForResults);
         System.out.println("--prefixForFileName = " + ((prefixForFileName.isEmpty())? "без префикса": prefixForFileName) );
-        System.out.println("--hortStatistics = " + shortStatistics);
+        System.out.println("--shortStatistics = " + shortStatistics);
         System.out.println("--FullStatistics = " + fullStatistics);
         System.out.println("--reWrite = " + reWrite);
         System.out.println("--incomingFiles = " + incomingFiles);
@@ -62,6 +62,7 @@ public class ArgumentsForUtility {
                 '}';
     }
     public String getRootFolder (){
+        new GetRootFolder().getRoot();
         return rootFolder;
     }
     public String getFolderForResults() {

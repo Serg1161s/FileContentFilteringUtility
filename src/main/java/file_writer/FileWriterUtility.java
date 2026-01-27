@@ -41,7 +41,7 @@ public  class FileWriterUtility {
             new FileWrongTypeOfFileException(" Prefix ( " + prefixForOutputFiles + ") should be without (.).The files saved without prefix");
             return  "";
         } else  {
-            return  (ReferenceChecker.checkFileName(prefixForOutputFiles)) ? prefixForOutputFiles : "";
+            return  (new ReferenceChecker().checkFileName(prefixForOutputFiles)) ? prefixForOutputFiles : "";
         }
     }
 

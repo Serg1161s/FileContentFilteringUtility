@@ -29,17 +29,27 @@ java -jar FileContentFilteringUtility-1.0.jar -p some_ -s -f  - in1.txt,in2.txt,
 
 Система сборки:
 
-IntelliJ IDEA 2024.1.1 (Community Edition)
-Build #IC-241.15989.150, built on April 29, 2024
-Runtime version: 17.0.10+1-b1207.14 amd64
+IntelliJ IDEA 2025.2.6.1 (Community Edition)
+Build #IC-252.28539.33, built on January 9, 2026
+Source revision: 4e8dca23c1f67
+Runtime version: 21.0.9+1-b1038.78 amd64 (JCEF 122.1.9)
 VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
-Windows 10.0
+Toolkit: sun.awt.windows.WToolkit
+Windows 11.0
+GC: G1 Young Generation, G1 Concurrent GC, G1 Old Generation
+Memory: 2048M
+Cores: 8
+Registry:
+ide.experimental.ui=true
+llm.show.ai.promotion.window.on.start=false
+Kotlin: 252.28539.33-IJ
 
-Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
-Maven home: C:\Program Files\Maven\apache-maven-3.9.9
-Java version: 23.0.1, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-23
-Default locale: ru_RU, platform encoding: UTF-8
-OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd
+
+java 25.0.1 2025-10-21 LTS
+Java(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)
 
 Зависимости:
 JComander

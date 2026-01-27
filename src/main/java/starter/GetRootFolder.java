@@ -8,8 +8,7 @@ public class GetRootFolder {
         try {
             return new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParent();
         } catch (URISyntaxException e) {
-            System.out.println("Root Folder was not find");
-            e.fillInStackTrace();
+            System.out.println("Root Folder was not found");
         }
         return null;
     }

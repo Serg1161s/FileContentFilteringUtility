@@ -8,7 +8,7 @@ public class GetFileReferences {
     public GetIncomingFilesReferences getFilesReferences(ArgumentsForUtility arguments) {
         GetIncomingFilesReferences filesReferences = new GetIncomingFilesReferences();
         for (File name : arguments.getIncomingFiles()) {
-            if (ReferenceChecker.nameChecker(name.toString())) {
+            if (new ReferenceChecker().nameChecker(name.toString())) {
                 filesReferences.addReference(arguments.getRootFolder(), name.toString());
             }
         }
