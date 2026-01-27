@@ -45,7 +45,7 @@ public class BoxForIncomingDateFromFiles {
 
     private void getShortStatistics() {
         System.out.println("____________________________________________________");
-        System.out.println("Short statistics: + \n"
+        System.out.println("Short statistics:  \n"
                          + "Total of the elements = " + (countFloat + countString));
         System.out.println("____________________________________________________");
     }
